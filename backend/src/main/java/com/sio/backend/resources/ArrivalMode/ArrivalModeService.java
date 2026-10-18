@@ -1,8 +1,5 @@
-package com.sio.backend.resources.services;
+package com.sio.backend.resources.ArrivalMode;
 
-import com.sio.backend.resources.dtos.ArrivalModeDTO;
-import com.sio.backend.resources.mappers.ArrivalModeMapper;
-import com.sio.backend.resources.repositories.ArrivalModeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

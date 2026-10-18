@@ -1,4 +1,4 @@
-package com.sio.backend.resources.dtos;
+package com.sio.backend.resources.triage_colors;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

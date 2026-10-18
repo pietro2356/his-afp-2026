@@ -1,8 +1,5 @@
-package com.sio.backend.resources.services;
+package com.sio.backend.resources.pathology;
 
-import com.sio.backend.resources.dtos.PathologyDTO;
-import com.sio.backend.resources.mappers.PathologyMapper;
-import com.sio.backend.resources.repositories.PathologyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sio.backend.resources.entities;
+package com.sio.backend.resources.ArrivalMode;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,16 +15,16 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "pathologies", schema = "sio")
-public class Pathology {
+@Table(name = "arrival_modes", schema = "sio")
+public class ArrivalMode {
     @Id
     @Size(max = 10)
     @Column(name = "code", nullable = false, length = 10)
     private String code;
 
-    @Size(max = 100)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = false, length = 50)
     private String description;
 
     @ColumnDefault("CURRENT_TIMESTAMP")

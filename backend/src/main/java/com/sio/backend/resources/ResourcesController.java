@@ -1,12 +1,12 @@
 package com.sio.backend.resources;
 
 import com.sio.backend.core.dtos.APIResponse;
-import com.sio.backend.resources.dtos.ArrivalModeDTO;
-import com.sio.backend.resources.dtos.PathologyDTO;
-import com.sio.backend.resources.dtos.TriageColorDTO;
-import com.sio.backend.resources.services.ArrivalModeService;
-import com.sio.backend.resources.services.PathologyService;
-import com.sio.backend.resources.services.TriageColorService;
+import com.sio.backend.resources.ArrivalMode.ArrivalModeDTO;
+import com.sio.backend.resources.pathology.PathologyDTO;
+import com.sio.backend.resources.triage_colors.TriageColorDTO;
+import com.sio.backend.resources.ArrivalMode.ArrivalModeService;
+import com.sio.backend.resources.pathology.PathologyService;
+import com.sio.backend.resources.triage_colors.TriageColorService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

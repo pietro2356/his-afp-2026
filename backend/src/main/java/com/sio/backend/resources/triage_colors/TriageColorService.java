@@ -1,8 +1,5 @@
-package com.sio.backend.resources.services;
+package com.sio.backend.resources.triage_colors;
 
-import com.sio.backend.resources.dtos.TriageColorDTO;
-import com.sio.backend.resources.mappers.TriageColorMapper;
-import com.sio.backend.resources.repositories.TriageColorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

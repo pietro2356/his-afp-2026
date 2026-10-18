@@ -1,7 +1,5 @@
-package com.sio.backend.resources.mappers;
+package com.sio.backend.resources.triage_colors;
 
-import com.sio.backend.resources.dtos.TriageColorDTO;
-import com.sio.backend.resources.entities.TriageColor;
 import org.springframework.stereotype.Component;
 
 @Component

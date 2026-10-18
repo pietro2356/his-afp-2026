@@ -1,7 +1,5 @@
-package com.sio.backend.resources.mappers;
+package com.sio.backend.resources.pathology;
 
-import com.sio.backend.resources.dtos.PathologyDTO;
-import com.sio.backend.resources.entities.Pathology;
 import org.springframework.stereotype.Component;
 
 @Component

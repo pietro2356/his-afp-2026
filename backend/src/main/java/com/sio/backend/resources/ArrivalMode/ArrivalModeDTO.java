@@ -1,4 +1,4 @@
-package com.sio.backend.resources.dtos;
+package com.sio.backend.resources.ArrivalMode;
 
 public record ArrivalModeDTO(
     String code,

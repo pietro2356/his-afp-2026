@@ -1,4 +1,4 @@
-package com.sio.backend.resources.entities;
+package com.sio.backend.resources.triage_colors;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,20 +12,29 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "arrival_modes", schema = "sio")
-public class ArrivalMode {
+@Table(name = "triage_colors") // , schema = "sio"
+public class TriageColor {
     @Id
-    @Size(max = 10)
-    @Column(name = "code", nullable = false, length = 10)
+    @Size(max = 20)
+    @Column(name = "code", nullable = false, length = 20)
     private String code;
 
     @Size(max = 50)
     @NotNull
-    @Column(name = "description", nullable = false, length = 50)
-    private String description;
+    @Column(name = "display_name", nullable = false, length = 50)
+    private String displayName;
+
+    @NotNull
+    @Column(name = "priority", nullable = false)
+    private Integer priority;
+
+    @Size(max = 7)
+    @NotNull
+    @Column(name = "hex_value", nullable = false, length = 7)
+    private String hexValue;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")

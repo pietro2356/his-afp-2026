@@ -1,8 +1,6 @@
-package com.sio.backend.resources.mappers;
+package com.sio.backend.resources.ArrivalMode;
 
-import com.sio.backend.resources.dtos.ArrivalModeDTO;
-import com.sio.backend.resources.entities.ArrivalMode;
-import com.sio.backend.resources.entities.TriageColor;
+import com.sio.backend.resources.triage_colors.TriageColor;
 import org.springframework.stereotype.Component;
 
 @Component
