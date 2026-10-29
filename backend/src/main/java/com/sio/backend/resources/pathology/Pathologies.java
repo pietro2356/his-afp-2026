@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
@@ -28,8 +29,9 @@ public class Pathologies {
     @Column(name = "description", nullable = false, length = 100)
     private String description;
 
+    @CreationTimestamp
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     private Instant createdAt;
 
     public String getCode(){
