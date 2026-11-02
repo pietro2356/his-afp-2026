@@ -1,6 +1,5 @@
 package com.sio.backend.resources.pathology;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,6 +33,12 @@ public class PathologiesService {
         return dtos;
     }
 
+    public PathologiesDTO getPathologyById(String code){
+        Pathologies e = repo.findById(code).orElseThrow();
+
+        return mapper.toDTO(e);
+    }
+
     public PathologiesDTO createNewPathology(PathologiesDTO dto){
         Pathologies entity = mapper.toEntity(dto);
         entity = repo.save(entity);
@@ -56,11 +61,3 @@ public class PathologiesService {
         repo.save(mapper.toEntity(dto));
     }
 }
-
-/**
- *      - code
- *      - descr
- */
-
-
-

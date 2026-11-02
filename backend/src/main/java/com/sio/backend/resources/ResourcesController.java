@@ -1,5 +1,6 @@
 package com.sio.backend.resources;
 
+import com.sio.backend.generics.ApiResponse;
 import com.sio.backend.resources.pathology.PathologiesDTO;
 import com.sio.backend.resources.pathology.PathologiesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,17 @@ class ResourcesController {
     private PathologiesService pathologiesService;
 
     @GetMapping("/pathologies")
-    public List<PathologiesDTO> getPathologies(){
-        return pathologiesService.getAllPathologies();
+    public ApiResponse<List<PathologiesDTO>> getAllPathologies(){
+        return ApiResponse.success(
+                pathologiesService.getAllPathologies()
+        );
+    }
+
+    @GetMapping("/pathologies/{code}")
+    public ApiResponse<PathologiesDTO> getPathologiesByCode(@PathVariable String code){
+        PathologiesDTO dto = pathologiesService.getPathologyById(code);
+
+        return ApiResponse.success(dto);
     }
 
     @PostMapping("/pathologies")
@@ -32,5 +42,14 @@ class ResourcesController {
     @PutMapping("/pathologies")
     public void editPathology(@RequestBody PathologiesDTO dto){
         pathologiesService.editPathology(dto);
+    }
+
+    @GetMapping("/sim-error")
+    public ApiResponse<PathologiesDTO> getSimError() throws Exception {
+        throw new Exception("Eccezione dinamica lanciata");
+//        return ApiResponse.error(
+//                "Messaggio di errore simulato",
+//                HttpStatus.INTERNAL_SERVER_ERROR.value()
+//                );
     }
 }
