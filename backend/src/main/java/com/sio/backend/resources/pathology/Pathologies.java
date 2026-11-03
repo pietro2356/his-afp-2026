@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -13,19 +14,19 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
 
-//@Getter
-//@Setter
+@Getter
+@Setter
 @Entity
 @Table(name = "pathologies") // schema="sio"
 public class Pathologies {
     @Id
     @Size(max = 10)
-    @NotNull
+    @NotBlank
     @Column(name = "code", nullable = false, length = 10)
     private String code;
 
     @Size(max = 100)
-    @NotNull
+    @NotBlank
     @Column(name = "description", nullable = false, length = 100)
     private String description;
 
@@ -34,24 +35,24 @@ public class Pathologies {
     @Column(name = "created_at")
     private Instant createdAt;
 
-    public String getCode(){
-        return code;
-    }
-    public void setCode(String code){
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
+//    public String getCode(){
+//        return code;
+//    }
+//    public void setCode(String code){
+//        this.code = code;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public Instant getCreatedAt() {
+//        return createdAt;
+//    }
+//    public void setCreatedAt(Instant createdAt) {
+//        this.createdAt = createdAt;
+//    }
 }

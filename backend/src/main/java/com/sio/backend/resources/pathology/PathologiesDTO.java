@@ -2,10 +2,8 @@ package com.sio.backend.resources.pathology;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.Instant;
-
 public record PathologiesDTO(
-        @NotBlank
+        @NotBlank(message = "Il codice è obbligatorio")
         String code,
 
         @NotBlank
