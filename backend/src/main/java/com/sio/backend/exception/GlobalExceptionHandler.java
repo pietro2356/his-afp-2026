@@ -20,9 +20,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Void> handleAll(Exception ex){
-
-        List<StackTraceElement> errors = List.of(ex.getStackTrace());
-
         return ApiResponse.error(
                 ex.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
