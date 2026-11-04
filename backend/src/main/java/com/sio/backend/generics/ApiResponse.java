@@ -27,15 +27,7 @@ public class ApiResponse<T> {
     private String stackTrace;
 
     // --- SUCCESS ---
-    public static <T> ApiResponse<T> success(T data){
-        return ApiResponse.<T>builder()
-                .status(ApiResponseStatus.SUCCESS)
-                .statusCode(HttpStatus.OK.value())
-                .timestamp(Instant.now())
-                .data(data)
-                .build();
-    }
-    public static <T extends Collection<?>> ApiResponse<T> success(T data){
+    public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.SUCCESS)
                 .statusCode(HttpStatus.OK.value())
@@ -45,7 +37,7 @@ public class ApiResponse<T> {
     }
 
     // -- ERROR --
-    public static <T> ApiResponse<T> error(String message, Integer statusCode){
+    public static <T> ApiResponse<T> error(String message, Integer statusCode) {
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.ERROR)
                 .statusCode(statusCode)
@@ -53,7 +45,8 @@ public class ApiResponse<T> {
                 .message(message)
                 .build();
     }
-    public static <T> ApiResponse<T> error(String message, Integer statusCode, String errorCode){
+
+    public static <T> ApiResponse<T> error(String message, Integer statusCode, String errorCode) {
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.ERROR)
                 .statusCode(statusCode)
@@ -64,7 +57,7 @@ public class ApiResponse<T> {
     }
 
     // --- FAIL ---
-    public static <T> ApiResponse<T> fail(String message, Integer statusCode){
+    public static <T> ApiResponse<T> fail(String message, Integer statusCode) {
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.FAIL)
                 .statusCode(statusCode)
@@ -72,7 +65,8 @@ public class ApiResponse<T> {
                 .message(message)
                 .build();
     }
-    public static <T> ApiResponse<T> fail(String message, Integer statusCode, String errorCode){
+
+    public static <T> ApiResponse<T> fail(String message, Integer statusCode, String errorCode) {
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.FAIL)
                 .statusCode(statusCode)
@@ -82,15 +76,3 @@ public class ApiResponse<T> {
                 .build();
     }
 }
-
-/**
- * status - SUCCESS | FAIL | ERROR
- * code
- * timestamp
- *
- * data
- *
- * message
- * code
- * stacktrace
- */
