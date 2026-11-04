@@ -1,7 +1,6 @@
 package com.sio.backend.exception;
 
 import com.sio.backend.generics.ApiResponse;
-import com.sio.backend.generics.ApiResponseStatus;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +13,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-
-/**
- * - EntityNotFoundException -> 404
- * - NoSuchElementException -> 404
- * - MethodArgumentNotValidException -> 400
- * - HttpMessageNotReadableException -> 400
- */
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,12 +28,6 @@ public class GlobalExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "GENERIC_ERROR"
         );
-//        return ApiResponse.builder()
-//                .status(ApiResponseStatus.ERROR)
-//                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-//                .timestamp(Instant.now())
-//                .message(ex.getMessage())
-//                .build();
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
