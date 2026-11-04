@@ -4,34 +4,33 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PathologiesService {
+public class PathologyService {
 
-    private final PathologiesRepository repo;
-    private final PathologiesMapper mapper;
+    private final PathologyRepository repo;
+    private final PathologyMapper mapper;
 
-    public PathologiesService(PathologiesRepository repo, PathologiesMapper mapper){
+    public PathologyService(PathologyRepository repo, PathologyMapper mapper){
         this.repo = repo;
         this.mapper = mapper;
     }
 
     @Transactional(readOnly = true)
-    public List<PathologiesDTO> getAllPathologies(){
+    public List<PathologyDTO> getAllPathologies(){
         return repo.findAll().stream()
                 .map(mapper::toDTO)
                 .toList();
     }
 
-    public PathologiesDTO getPathologyById(String code){
+    public PathologyDTO getPathologyById(String code){
         Pathology e = repo.findById(code).orElseThrow();
 
         return mapper.toDTO(e);
     }
 
-    public PathologiesDTO createNewPathology(PathologiesDTO dto){
+    public PathologyDTO createNewPathology(PathologyDTO dto){
         if (repo.existsById(dto.code())){
             throw new IllegalArgumentException("Patologia con codice: " + dto.code() + " già esistente");
         }
@@ -46,7 +45,7 @@ public class PathologiesService {
     }
 
     @Transactional(label = "editPathology")
-    public PathologiesDTO editPathology(PathologiesDTO dto){
+    public PathologyDTO editPathology(PathologyDTO dto){
         Pathology e = repo.findById(dto.code())
             .orElseThrow(() -> new EntityNotFoundException("Patologia con codice: " + dto.code() + " non trovata"));
 

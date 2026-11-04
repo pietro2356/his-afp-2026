@@ -1,8 +1,8 @@
 package com.sio.backend.resources;
 
 import com.sio.backend.generics.ApiResponse;
-import com.sio.backend.resources.pathology.PathologiesDTO;
-import com.sio.backend.resources.pathology.PathologiesService;
+import com.sio.backend.resources.pathology.PathologyDTO;
+import com.sio.backend.resources.pathology.PathologyService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,42 +13,42 @@ import java.util.List;
 @RequestMapping("/resources")
 class ResourcesController {
 
-    private final PathologiesService pathologiesService;
+    private final PathologyService pathologyService;
 
-    ResourcesController(PathologiesService pathologiesService) {
-        this.pathologiesService = pathologiesService;
+    ResourcesController(PathologyService pathologyService) {
+        this.pathologyService = pathologyService;
     }
 
     @GetMapping("/pathologies")
-    public ApiResponse<List<PathologiesDTO>> getAllPathologies(){
+    public ApiResponse<List<PathologyDTO>> getAllPathologies(){
         return ApiResponse.success(
-                pathologiesService.getAllPathologies()
+                pathologyService.getAllPathologies()
         );
     }
 
     @GetMapping("/pathologies/{code}")
-    public ApiResponse<PathologiesDTO> getPathologiesByCode(@Valid @PathVariable String code){
-        PathologiesDTO dto = pathologiesService.getPathologyById(code);
+    public ApiResponse<PathologyDTO> getPathologiesByCode(@Valid @PathVariable String code){
+        PathologyDTO dto = pathologyService.getPathologyById(code);
 
         return ApiResponse.success(dto);
     }
 
     @PostMapping("/pathologies")
     @ResponseStatus(HttpStatus.CREATED)
-    public ApiResponse<PathologiesDTO> createPathology(@Valid @RequestBody PathologiesDTO dto){
-        return ApiResponse.success(pathologiesService.createNewPathology(dto));
+    public ApiResponse<PathologyDTO> createPathology(@Valid @RequestBody PathologyDTO dto){
+        return ApiResponse.success(pathologyService.createNewPathology(dto));
     }
 
     @DeleteMapping("/pathologies/{code}")
     public ApiResponse<Void> deletePathology(@PathVariable String code){
-        pathologiesService.deletePathology(code);
+        pathologyService.deletePathology(code);
 
         return ApiResponse.success((Void) null);
     }
 
     @PutMapping("/pathologies")
-    public ApiResponse<PathologiesDTO> editPathology(@Valid @RequestBody PathologiesDTO dto){
-        PathologiesDTO newDto = pathologiesService.editPathology(dto);
+    public ApiResponse<PathologyDTO> editPathology(@Valid @RequestBody PathologyDTO dto){
+        PathologyDTO newDto = pathologyService.editPathology(dto);
         return ApiResponse.success(newDto);
     }
 }

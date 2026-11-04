@@ -3,17 +3,17 @@ package com.sio.backend.resources.pathology;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PathologiesMapper {
-    public PathologiesDTO toDTO(Pathology entity){
+public class PathologyMapper {
+    public PathologyDTO toDTO(Pathology entity){
         if (entity == null) return null;
 
-        return new PathologiesDTO(
+        return new PathologyDTO(
                 entity.getCode(),
                 entity.getDescription()
         );
     }
 
-    public Pathology toEntity(PathologiesDTO dto){
+    public Pathology toEntity(PathologyDTO dto){
         if (dto == null) return null;
 
         Pathology entity = new Pathology();
