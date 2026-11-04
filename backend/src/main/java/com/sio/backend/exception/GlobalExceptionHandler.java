@@ -34,8 +34,7 @@ public class GlobalExceptionHandler {
         return ApiResponse.error(
                 ex.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "GENERIC_ERROR",
-                ex.getStackTrace()[0].toString()
+                "GENERIC_ERROR"
         );
 //        return ApiResponse.builder()
 //                .status(ApiResponseStatus.ERROR)

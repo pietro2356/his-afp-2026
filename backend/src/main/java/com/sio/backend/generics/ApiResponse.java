@@ -53,14 +53,13 @@ public class ApiResponse<T> {
                 .message(message)
                 .build();
     }
-    public static <T> ApiResponse<T> error(String message, Integer statusCode, String errorCode, String stackTrace){
+    public static <T> ApiResponse<T> error(String message, Integer statusCode, String errorCode){
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.ERROR)
                 .statusCode(statusCode)
                 .timestamp(Instant.now())
                 .message(message)
                 .errorCode(errorCode)
-                .stackTrace(stackTrace)
                 .build();
     }
 
