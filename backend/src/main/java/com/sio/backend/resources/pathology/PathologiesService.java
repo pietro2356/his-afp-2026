@@ -18,19 +18,11 @@ public class PathologiesService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     public List<PathologiesDTO> getAllPathologies(){
-        List<Pathology> list = repo.findAll();
-        List<PathologiesDTO> dtos = new ArrayList<>();
-
-        for (Pathology e : list){
-            dtos.add(mapper.toDTO(e));
-        }
-
-//        return repo.findAll().stream()
-//                .map(mapper::toDTO)
-//                .toList();
-
-        return dtos;
+        return repo.findAll().stream()
+                .map(mapper::toDTO)
+                .toList();
     }
 
     public PathologiesDTO getPathologyById(String code){
@@ -40,6 +32,9 @@ public class PathologiesService {
     }
 
     public PathologiesDTO createNewPathology(PathologiesDTO dto){
+        if (repo.existsById(dto.code())){
+            throw new IllegalArgumentException("Patologia con codice: " + dto.code() + " già esistente");
+        }
         Pathology entity = mapper.toEntity(dto);
         entity = repo.save(entity);
 
