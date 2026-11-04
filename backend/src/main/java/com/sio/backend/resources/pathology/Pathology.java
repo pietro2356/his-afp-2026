@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +17,7 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "pathologies") // schema="sio"
-public class Pathologies {
+public class Pathology {
     @Id
     @Size(max = 10)
     @NotBlank
@@ -34,25 +33,4 @@ public class Pathologies {
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")
     private Instant createdAt;
-
-//    public String getCode(){
-//        return code;
-//    }
-//    public void setCode(String code){
-//        this.code = code;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public Instant getCreatedAt() {
-//        return createdAt;
-//    }
-//    public void setCreatedAt(Instant createdAt) {
-//        this.createdAt = createdAt;
-//    }
 }

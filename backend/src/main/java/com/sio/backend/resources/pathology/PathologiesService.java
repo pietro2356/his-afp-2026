@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class PathologiesService {
@@ -21,10 +19,10 @@ public class PathologiesService {
     }
 
     public List<PathologiesDTO> getAllPathologies(){
-        List<Pathologies> list = repo.findAll();
+        List<Pathology> list = repo.findAll();
         List<PathologiesDTO> dtos = new ArrayList<>();
 
-        for (Pathologies e : list){
+        for (Pathology e : list){
             dtos.add(mapper.toDTO(e));
         }
 
@@ -36,13 +34,13 @@ public class PathologiesService {
     }
 
     public PathologiesDTO getPathologyById(String code){
-        Pathologies e = repo.findById(code).orElseThrow();
+        Pathology e = repo.findById(code).orElseThrow();
 
         return mapper.toDTO(e);
     }
 
     public PathologiesDTO createNewPathology(PathologiesDTO dto){
-        Pathologies entity = mapper.toEntity(dto);
+        Pathology entity = mapper.toEntity(dto);
         entity = repo.save(entity);
 
         return mapper.toDTO(entity);
@@ -54,12 +52,12 @@ public class PathologiesService {
 
     @Transactional(label = "editPathology")
     public PathologiesDTO editPathology(PathologiesDTO dto){
-        Pathologies e = repo.findById(dto.code())
+        Pathology e = repo.findById(dto.code())
             .orElseThrow(() -> new EntityNotFoundException("Patologia con codice: " + dto.code() + " non trovata"));
 
         e.setDescription(dto.description());
 
-        Pathologies savedEntity = repo.save(e);
+        Pathology savedEntity = repo.save(e);
 
         return mapper.toDTO(savedEntity);
     }

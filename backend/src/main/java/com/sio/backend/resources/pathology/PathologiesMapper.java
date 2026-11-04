@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PathologiesMapper {
-    public PathologiesDTO toDTO(Pathologies entity){
+    public PathologiesDTO toDTO(Pathology entity){
         if (entity == null) return null;
 
         return new PathologiesDTO(
@@ -13,10 +13,10 @@ public class PathologiesMapper {
         );
     }
 
-    public Pathologies toEntity(PathologiesDTO dto){
+    public Pathology toEntity(PathologiesDTO dto){
         if (dto == null) return null;
 
-        Pathologies entity = new Pathologies();
+        Pathology entity = new Pathology();
         entity.setCode(dto.code());
         entity.setDescription(dto.description());
 
