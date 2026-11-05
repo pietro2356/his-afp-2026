@@ -3,6 +3,7 @@ package com.sio.backend.exception;
 import com.sio.backend.generics.ApiResponse;
 import com.sio.backend.generics.ApiResponseStatus;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -23,6 +24,7 @@ import java.util.NoSuchElementException;
  */
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
@@ -30,6 +32,17 @@ public class GlobalExceptionHandler {
     public ApiResponse<Void> handleAll(Exception ex){
 
         List<StackTraceElement> errors = List.of(ex.getStackTrace());
+
+//        System.out.println("Error: " + ex.getMessage());
+        log.error("Errore imprevisto non gestito: {}", ex.getMessage());
+        /**
+         * ERROR - Errori gradi dell'applicativo
+         * WARN - Log di avviso
+         * INFO - Log generici d'informazione
+         *
+         * DEBUG -
+         * TRACE -
+         */
 
         return ApiResponse.error(
                 ex.getMessage(),
