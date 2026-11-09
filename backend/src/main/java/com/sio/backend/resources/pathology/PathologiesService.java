@@ -4,20 +4,18 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Slf4j
+@Transactional
 public class PathologiesService {
-
-//    private static final Logger logger = LoggerFactory.getLogger(PathologiesService.class);
-
     private final PathologiesRepository repo;
     private final PathologiesMapper mapper;
 
@@ -26,6 +24,7 @@ public class PathologiesService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     public List<PathologiesDTO> getAllPathologies(){
         log.debug("Recupero di tutte le patologie");
         List<Pathologies> list = repo.findAll();
@@ -42,12 +41,25 @@ public class PathologiesService {
         return dtos;
     }
 
+    @Transactional(readOnly = true)
+    public Page<PathologiesDTO> getAllPathologiesPaginated(Pageable pageable){
+        Page<Pathologies> entityPage = repo.findAll(pageable);
+
+        return entityPage.map(mapper::toDTO);
+    }
+
+    @Transactional(readOnly = true)
     public PathologiesDTO getPathologyById(String code){
         Pathologies e = repo.findById(code).orElseThrow();
 
         return mapper.toDTO(e);
     }
 
+    /**
+     * Crea una nuova patologia nel database
+     * @param dto
+     * @return
+     */
     public PathologiesDTO createNewPathology(PathologiesDTO dto){
         log.info("Creazione nuova entità patology con codice: {}", dto.code());
         log.debug("Entità in crezione con codice: {}, e descrzione {}", dto.code(), dto.description());
@@ -68,7 +80,6 @@ public class PathologiesService {
         repo.deleteById(code);
     }
 
-    @Transactional(label = "editPathology")
     public PathologiesDTO editPathology(PathologiesDTO dto){
         Pathologies e = repo.findById(dto.code())
             .orElseThrow(() -> new EntityNotFoundException("Patologia con codice: " + dto.code() + " non trovata"));

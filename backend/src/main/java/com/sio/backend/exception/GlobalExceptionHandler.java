@@ -30,32 +30,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiResponse<Void> handleAll(Exception ex){
-
-        List<StackTraceElement> errors = List.of(ex.getStackTrace());
-
-//        System.out.println("Error: " + ex.getMessage());
-        log.error("Errore imprevisto non gestito: {}", ex.getMessage());
-        /**
-         * ERROR - Errori gradi dell'applicativo
-         * WARN - Log di avviso
-         * INFO - Log generici d'informazione
-         *
-         * DEBUG -
-         * TRACE -
-         */
+        log.error("Codifica errore: THX403");
+        log.error("Errore imprevisto non gestito: {} - StakTrace: {}", ex.getMessage(), ex.getStackTrace());
 
         return ApiResponse.error(
-                ex.getMessage(),
+                "Errore inaspettato dal server",
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "GENERIC_ERROR",
-                ex.getStackTrace()[0].toString()
+                "THX403"
         );
-//        return ApiResponse.builder()
-//                .status(ApiResponseStatus.ERROR)
-//                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-//                .timestamp(Instant.now())
-//                .message(ex.getMessage())
-//                .build();
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

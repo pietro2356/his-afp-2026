@@ -14,6 +14,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       # 2. Crea un volume persistente per non perdere i dati se il container si spegne
       - sio_pgdata:/var/lib/postgresql/data
+    command: ["postgres", "-c", "log_statement=all"]
 
 volumes:
   sio_pgdata:

@@ -45,10 +45,11 @@ public class ApiResponse<T> {
     }
 
     // -- ERROR --
-    public static <T> ApiResponse<T> error(String message, Integer statusCode){
+    public static <T> ApiResponse<T> error(String message, Integer statusCode, String errorCode){
         return ApiResponse.<T>builder()
                 .status(ApiResponseStatus.ERROR)
                 .statusCode(statusCode)
+                .errorCode(errorCode)
                 .timestamp(Instant.now())
                 .message(message)
                 .build();
