@@ -7,7 +7,7 @@
     <img
       class="w-40"
       alt="logo azienda sanitaria"
-      src="logo-asuit.svg">
+      ngSrc="logo-asuit.svg" height="16" width="16">
   </div>
 
   <!-- DIVIDER -->
@@ -20,28 +20,7 @@
     <h1 class="text-4xl font-bold">{{reparto()}}</h1>
     <!--  STRUTTURA  -->
     <p>
-      {{struttura()}} {{ambiente()}}
-
-      @switch (ambiente()){
-        @case ('T'){
-          <p-tag
-            severity="info"
-            value="{{versione()}} - {{ambiente()}}"
-          />
-        }
-        @case ('P'){
-          <p-tag
-            severity="success"
-            value="{{versione()}} - {{ambiente()}}"
-          />
-        }
-        @default {
-          <p-tag
-            severity="contrast"
-            value="{{versione()}} - {{ambiente()}}"
-          />
-        }
-      }
+      {{struttura()}}
     </p>
 
   </div>

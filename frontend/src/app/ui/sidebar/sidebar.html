@@ -1,0 +1,40 @@
+<aside class="w-24 h-full flex flex-col shrink-0 select-none shadow-xl backdrop-opacity-5">
+  <nav class="flex-1 p-3 space-y-1 overflow-y-auto items-center">
+    @for (item of navItems(); track item.route) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="bg-primary-50 text-primary-600 font-semibold"
+        [routerLinkActiveOptions]="{ exact: false }"
+        class="flex flex-col content-center items-center gap-3 py-2.5 cursor-pointer"
+        [pTooltip]="item.label"
+        tooltipPosition="right"
+        [showDelay]="500"
+      >
+        <i [class]="item.icon" style="font-size: 1.3rem"></i>
+      </a>
+    }
+  </nav>
+
+  <div class="p-3 text-xs text-surface-400 text-center">
+    @switch (ambiente()){
+      @case ('T'){
+        <p-tag
+          severity="info"
+          value="{{versione()}}{{ambiente()}}"
+        />
+      }
+      @case ('P'){
+        <p-tag
+          severity="success"
+          value="{{versione()}}{{ambiente()}}"
+        />
+      }
+      @default {
+        <p-tag
+          severity="contrast"
+          value="{{versione()}}{{ambiente()}}"
+        />
+      }
+    }
+  </div>
+</aside>

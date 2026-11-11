@@ -1,0 +1,17 @@
+<div class="h-screen w-screen flex flex-col overflow-hidden bg-surface-50 dark:bg-surface-950 text-surface-900 dark:text-surface-0">
+  <!-- HEADER IN ALTO -->
+  <sio-header class="shrink-0 z-10" />
+
+  <!-- CORPO PRINCIPALE: SIDEBAR A SINISTRA + ROUTER-OUTLET AL CENTRO -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- SIDEBAR FISSA A SINISTRA -->
+    <sio-sidebar />
+
+    <!-- AREA CONTENUTO DINAMICO -->
+    <main class="flex-1 overflow-y-auto p-6 bg-surface-50 dark:bg-surface-950">
+      <div class="max-w-7xl mx-auto">
+        <router-outlet />
+      </div>
+    </main>
+  </div>
+</div>

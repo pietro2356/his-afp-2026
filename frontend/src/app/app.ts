@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { Header } from './ui/header/header';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 @Component({
-  imports: [Header],
+  imports: [MainLayout],
   selector: 'sio-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
