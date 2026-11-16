@@ -4,4 +4,16 @@
   optionLabel="description"
   placeholder="Seleziona un codice patologia"
   class="w-full md:w-56"
-/>
+>
+  <ng-template #selectedItem let-pathology>
+    {{ pathology.code }} - {{ pathology.description }}
+  </ng-template>
+  <ng-template #item let-pathology>
+    {{ pathology.code }} - {{ pathology.description }}
+  </ng-template>
+</p-select>
+
+@let selPatho = selectedPathology();
+@if (selPatho !== undefined) {
+  <p>{{selPatho.code}} - {{selPatho.description}}</p>
+}

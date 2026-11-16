@@ -16,7 +16,7 @@ export class Header {
   readonly struttura = signal('Presidio Ospedaliero di Arco');
 
   res = inject(Resources);
-  readonly patho = signal<string>('');
+  patho = signal<string>('');
 
   constructor() {
     this.res.fetch();

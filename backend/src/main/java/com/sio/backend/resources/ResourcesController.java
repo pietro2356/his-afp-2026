@@ -24,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/resources")
+@CrossOrigin
 @Tag(name="Gestione risorse SIO", description = "Endpoint per la gestione delle risorse SIO")
 class ResourcesController {
 
@@ -43,7 +44,7 @@ class ResourcesController {
                     description = "Lista di patologie recuperata con successo"
             )
     })
-    @GetMapping("/pathologies")
+    @GetMapping("/pathologiesp")
     public ApiResponse<Page<PathologiesDTO>> getAllPathologiesPaged(
             @PageableDefault(size = 10, sort = "code", direction = Sort.Direction.ASC) Pageable pageable
     ) {

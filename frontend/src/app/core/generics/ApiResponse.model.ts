@@ -1,6 +1,6 @@
 export interface ApiResponse<T> {
   status: string;
-  data: Page<T>;
+  data: T;
 }
 
 export interface Page<T> {

@@ -21,7 +21,7 @@ export class Sidebar {
     {
       label: 'Dashboard',
       icon: 'pi pi-user',
-      route: '/dashboard',
+      route: '/lista-pz',
     },
     {
       label: 'Accettazione Paziente',
@@ -31,7 +31,7 @@ export class Sidebar {
     {
       label: 'Stato Servizi',
       icon: 'pi pi-server',
-      route: '/stato',
+      route: '/stato-servizi',
     },
   ]);
   readonly versione = signal('v0.0.1');

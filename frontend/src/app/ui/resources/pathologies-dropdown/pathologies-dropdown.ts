@@ -1,7 +1,18 @@
-import { Component, inject, model, output, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  model,
+  output,
+  signal,
+  untracked,
+  WritableSignal,
+} from '@angular/core';
 import { Resources } from '../../../core/resources/resources';
 import { Select } from '@openng/optimus-ui/select';
 import { FormsModule } from '@angular/forms';
+import { IPathology } from '../../../core/resources/resources.model';
 
 @Component({
   imports: [Select, FormsModule],
@@ -11,5 +22,5 @@ import { FormsModule } from '@angular/forms';
 })
 export class PathologiesDropdown {
   readonly resources = inject(Resources);
-  selectedPathology = model.required<WritableSignal<string>>();
+  selectedPathology = signal<IPathology|undefined>(undefined);
 }
