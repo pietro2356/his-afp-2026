@@ -11,12 +11,16 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
- * Controller REST per la gestione delle risorse cliniche e di sistema del progetto SIO[cite: 9].
- * Espone gli endpoint per le operazioni CRUD sulle patologie[cite: 9].
+ * Controller REST per la gestione delle risorse cliniche e di sistema del progetto SIO.
+ * Espone gli endpoint per le operazioni CRUD sulle patologie.
  */
 @RestController
 @RequestMapping("/resources")
@@ -27,10 +31,10 @@ class ResourcesController {
     private PathologiesService pathologiesService;
 
     /**
-     * Recupera un elenco paginato di tutte le patologie registrate[cite: 9].
+     * Recupera un elenco paginato di tutte le patologie registrate.
      *
-     * @param pageable parametri di paginazione e ordinamento[cite: 9]
-     * @return un'istanza di {@link ApiResponse} contenente la pagina di {@link PathologiesDTO}[cite: 9]
+     * @param pageable parametri di paginazione e ordinamento
+     * @return un'istanza di {@link ApiResponse} contenente la pagina di {@link PathologiesDTO}
      */
     @Operation(summary = "Recupera tutte le patologie", description = "Recupero di tutte le patologie presenti a DB con supporto alla paginazione")
     @ApiResponses(value = {
@@ -40,9 +44,8 @@ class ResourcesController {
             )
     })
     @GetMapping("/pathologies")
-    public ApiResponse<Page<PathologiesDTO>> getAllPathologies(
-//            @PageableDefault(size = 10, sort = "code", direction = Sort.Direction.ASC)
-            Pageable pageable
+    public ApiResponse<Page<PathologiesDTO>> getAllPathologiesPaged(
+            @PageableDefault(size = 10, sort = "code", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         return ApiResponse.success(
                 pathologiesService.getAllPathologiesPaginated(pageable)
@@ -50,10 +53,29 @@ class ResourcesController {
     }
 
     /**
-     * Recupera una singola patologia tramite il codice identificativo univoco[cite: 9].
+     * Recupera un elencodi tutte le patologie registrate.
      *
-     * @param code il codice identificativo della patologia[cite: 9]
-     * @return un'istanza di {@link ApiResponse} contenente il {@link PathologiesDTO} corrispondente[cite: 9]
+     * @return un'istanza di {@link ApiResponse} contenente {@link PathologiesDTO}
+     */
+    @Operation(summary = "Recupera tutte le patologie", description = "Recupero di tutte le patologie presenti a DB con supporto alla paginazione")
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "Lista di patologie recuperata con successo"
+            )
+    })
+    @GetMapping("/pathologies")
+    public ApiResponse<List<PathologiesDTO>> getAllPathologies() {
+        return ApiResponse.success(
+                pathologiesService.getAllPathologies()
+        );
+    }
+
+    /**
+     * Recupera una singola patologia tramite il codice identificativo univoco.
+     *
+     * @param code il codice identificativo della patologia
+     * @return un'istanza di {@link ApiResponse} contenente il {@link PathologiesDTO} corrispondente
      */
     @Operation(
             summary = "Recupera una patologia dato il suo codice",
@@ -76,10 +98,10 @@ class ResourcesController {
     }
 
     /**
-     * Crea una nuova patologia nel sistema[cite: 9].
+     * Crea una nuova patologia nel sistema.
      *
-     * @param dto il DTO contenente i dati della patologia da creare[cite: 9]
-     * @return il {@link PathologiesDTO} della patologia appena creata[cite: 9]
+     * @param dto il DTO contenente i dati della patologia da creare
+     * @return il {@link PathologiesDTO} della patologia appena creata
      */
     @Operation(summary = "Crea una nuova patologia", description = "Inserisce una nuova patologia nel database")
     @ApiResponses(value = {
@@ -92,10 +114,10 @@ class ResourcesController {
     }
 
     /**
-     * Elimina una patologia esistente in base al codice[cite: 9].
+     * Elimina una patologia esistente in base al codice.
      *
-     * @param code il codice identificativo della patologia da rimuovere[cite: 9]
-     * @return un'istanza di {@link ApiResponse} vuota con esito positivo[cite: 9]
+     * @param code il codice identificativo della patologia da rimuovere
+     * @return un'istanza di {@link ApiResponse} vuota con esito positivo
      */
     @Operation(summary = "Elimina una patologia", description = "Rimuove una patologia dal database tramite il codice")
     @ApiResponses(value = {
@@ -112,10 +134,10 @@ class ResourcesController {
     }
 
     /**
-     * Modifica i dati di una patologia esistente[cite: 9].
+     * Modifica i dati di una patologia esistente.
      *
-     * @param dto il DTO contenente i campi aggiornati[cite: 9]
-     * @return un'istanza di {@link ApiResponse} con il {@link PathologiesDTO} aggiornato[cite: 9]
+     * @param dto il DTO contenente i campi aggiornati
+     * @return un'istanza di {@link ApiResponse} con il {@link PathologiesDTO} aggiornato
      */
     @Operation(summary = "Modifica una patologia", description = "Aggiorna la descrizione di una patologia esistente")
     @ApiResponses(value = {
@@ -129,10 +151,10 @@ class ResourcesController {
     }
 
     /**
-     * Endpoint di utilità per simulare un errore del server a fini di test e debug[cite: 9].
+     * Endpoint di utilità per simulare un errore del server a fini di test e debug.
      *
-     * @return non restituisce valori, solleva un'eccezione di test[cite: 9]
-     * @throws Exception eccezione generica simulata[cite: 9]
+     * @return non restituisce valori, solleva un'eccezione di test
+     * @throws Exception eccezione generica simulata
      */
     @Operation(summary = "Simula un errore", description = "Endpoint di test per verificare la gestione globale delle eccezioni")
     @ApiResponses(value = {
