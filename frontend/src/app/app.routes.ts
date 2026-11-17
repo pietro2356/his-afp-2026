@@ -1,3 +1,43 @@
 import { Routes } from '@angular/router';
+import { MainLayout } from './layout/main-layout/main-layout';
+import { RisLayout } from './layout/ris-layout/ris-layout';
+import { StatoSio } from './core/stato/stato-sio/stato-sio';
 
-export const routes: Routes = [];
+// /ris
+export const routes: Routes = [
+  {
+    path: '',
+    component: MainLayout,
+    children: [
+      {
+        path: '',
+        redirectTo: 'lista-pz',
+        pathMatch: 'full',
+      },
+      {
+        path: 'lista-pz',
+        loadComponent: () =>
+          import('./features/lista-pz/lista-pz').then((m) => m.ListaPz),
+      },
+      {
+        path: 'accettazione',
+        loadComponent: () =>
+          import('./features/accettazione/accettazione').then((m) => m.Accettazione),
+      },
+      {
+        path: 'stato-sio',
+        loadComponent: () =>
+          import('./features/stato-sio/stato-sio').then((m) => m.StatoSio),
+      },
+    ],
+  },
+  {
+    path: 'ris',
+    component: RisLayout,
+  },
+  {
+    path: '**',
+    redirectTo: 'lista-pz',
+    pathMatch: 'full'
+  }
+];

@@ -14,3 +14,17 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+  endpoints:
+    web:
+      cors:
+        allowed-origins:
+          - http://localhost:4200
+        allowed-methods:
+          - GET
