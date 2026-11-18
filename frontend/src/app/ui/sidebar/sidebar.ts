@@ -29,7 +29,7 @@ export class Sidebar {
     {
       label: 'Stato SIO',
       icon: 'pi pi-server',
-      route: '/stato-sio',
+      route: '/stato-servizi-sio',
     },
   ]);
 }

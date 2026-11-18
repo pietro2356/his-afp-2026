@@ -4,7 +4,7 @@ import { MainLayout } from './layout/main-layout/main-layout';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [Header, MainLayout, RouterOutlet],
+  imports: [RouterOutlet],
   selector: 'sio-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

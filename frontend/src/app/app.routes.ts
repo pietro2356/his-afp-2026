@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { RisLayout } from './layout/ris-layout/ris-layout';
-import { StatoSio } from './core/stato/stato-sio/stato-sio';
+import { StatoServiziSio } from './features/stato-sio/stato-servizi-sio/stato-servizi-sio';
 
 // /ris
 export const routes: Routes = [
@@ -25,7 +25,7 @@ export const routes: Routes = [
           import('./features/accettazione/accettazione').then((m) => m.Accettazione),
       },
       {
-        path: 'stato-sio',
+        path: 'stato-servizi-sio',
         loadComponent: () =>
           import('./features/stato-sio/stato-sio').then((m) => m.StatoSio),
       },
