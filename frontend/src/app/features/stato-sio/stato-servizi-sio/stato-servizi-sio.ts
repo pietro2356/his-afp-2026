@@ -2,7 +2,7 @@ import { inject, Service, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IStatoServiziSio, STATO_SIO_MOCK } from './stato-servizi-sio.models';
 
-@Service()
+@Service({autoProvided: false})
 export class StatoServiziSio {
   readonly #http = inject(HttpClient);
 

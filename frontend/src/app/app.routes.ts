@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { RisLayout } from './layout/ris-layout/ris-layout';
 import { StatoServiziSio } from './features/stato-sio/stato-servizi-sio/stato-servizi-sio';
+import { RoutingError } from './ui/errors/routing-error/routing-error';
 
 // /ris
 export const routes: Routes = [
@@ -26,8 +27,10 @@ export const routes: Routes = [
       },
       {
         path: 'stato-servizi-sio',
+        providers: [StatoServiziSio],
         loadComponent: () =>
           import('./features/stato-sio/stato-sio').then((m) => m.StatoSio),
+        errorComponent: RoutingError
       },
     ],
   },
