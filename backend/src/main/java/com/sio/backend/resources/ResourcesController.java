@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/resources")
 @Tag(name="Gestione risorse SIO", description = "Endpoint per la gestione delle risorse SIO")
 class ResourcesController {
