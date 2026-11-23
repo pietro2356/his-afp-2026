@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
 @Schema(description = "DTO per il trasferimento dei dati riguardanti la Patologia")
-public record PathologiesDTO(
+public record PathologyDTO(
 
         @Schema(
                 description = "Codice univoco della patologia",

@@ -2,8 +2,6 @@ package com.sio.backend.resources.pathology;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,22 +13,22 @@ import java.util.List;
 @Service
 @Slf4j
 @Transactional
-public class PathologiesService {
-    private final PathologiesRepository repo;
-    private final PathologiesMapper mapper;
+public class PathologyService {
+    private final PathologyRepository repo;
+    private final PathologyMapper mapper;
 
-    public PathologiesService(PathologiesRepository repo, PathologiesMapper mapper){
+    public PathologyService(PathologyRepository repo, PathologyMapper mapper){
         this.repo = repo;
         this.mapper = mapper;
     }
 
     @Transactional(readOnly = true)
-    public List<PathologiesDTO> getAllPathologies(){
+    public List<PathologyDTO> getAllPathologies(){
         log.debug("Recupero di tutte le patologie");
-        List<Pathologies> list = repo.findAll();
-        List<PathologiesDTO> dtos = new ArrayList<>();
+        List<Pathology> list = repo.findAll();
+        List<PathologyDTO> dtos = new ArrayList<>();
 
-        for (Pathologies e : list){
+        for (Pathology e : list){
             dtos.add(mapper.toDTO(e));
         }
 
@@ -42,15 +40,15 @@ public class PathologiesService {
     }
 
     @Transactional(readOnly = true)
-    public Page<PathologiesDTO> getAllPathologiesPaginated(Pageable pageable){
-        Page<Pathologies> entityPage = repo.findAll(pageable);
+    public Page<PathologyDTO> getAllPathologiesPaginated(Pageable pageable){
+        Page<Pathology> entityPage = repo.findAll(pageable);
 
         return entityPage.map(mapper::toDTO);
     }
 
     @Transactional(readOnly = true)
-    public PathologiesDTO getPathologyById(String code){
-        Pathologies e = repo.findById(code).orElseThrow();
+    public PathologyDTO getPathologyById(String code){
+        Pathology e = repo.findById(code).orElseThrow();
 
         return mapper.toDTO(e);
     }
@@ -60,7 +58,7 @@ public class PathologiesService {
      * @param dto
      * @return
      */
-    public PathologiesDTO createNewPathology(PathologiesDTO dto){
+    public PathologyDTO createNewPathology(PathologyDTO dto){
         log.info("Creazione nuova entità patology con codice: {}", dto.code());
         log.debug("Entità in crezione con codice: {}, e descrzione {}", dto.code(), dto.description());
 
@@ -69,7 +67,7 @@ public class PathologiesService {
             throw new IllegalArgumentException("Patologia con codice: " + dto.code() + " già esistente");
         }
 
-        Pathologies entity = mapper.toEntity(dto);
+        Pathology entity = mapper.toEntity(dto);
         entity = repo.save(entity);
 
         log.info("Entità patology con codice: {} creata con successo", entity.getCode());
@@ -80,13 +78,13 @@ public class PathologiesService {
         repo.deleteById(code);
     }
 
-    public PathologiesDTO editPathology(PathologiesDTO dto){
-        Pathologies e = repo.findById(dto.code())
+    public PathologyDTO editPathology(PathologyDTO dto){
+        Pathology e = repo.findById(dto.code())
             .orElseThrow(() -> new EntityNotFoundException("Patologia con codice: " + dto.code() + " non trovata"));
 
         e.setDescription(dto.description());
 
-        Pathologies savedEntity = repo.save(e);
+        Pathology savedEntity = repo.save(e);
 
         return mapper.toDTO(savedEntity);
     }
