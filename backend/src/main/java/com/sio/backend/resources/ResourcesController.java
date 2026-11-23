@@ -1,8 +1,8 @@
 package com.sio.backend.resources;
 
 import com.sio.backend.generics.ApiResponse;
-import com.sio.backend.resources.pathology.PathologiesDTO;
-import com.sio.backend.resources.pathology.PathologiesService;
+import com.sio.backend.resources.pathology.PathologyDTO;
+import com.sio.backend.resources.pathology.PathologyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -11,11 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -24,7 +20,7 @@ import java.util.List;
 class ResourcesController {
 
     @Autowired
-    private PathologiesService pathologiesService;
+    private PathologyService pathologiesService;
 
 
     @Operation(summary = "Recupera tutte le patologie", description = "Recupero di tutte le patologie presenti a DB")
@@ -35,7 +31,7 @@ class ResourcesController {
         )
     })
     @GetMapping("/pathologies")
-    public ApiResponse<Page<PathologiesDTO>> getAllPathologies(
+    public ApiResponse<Page<PathologyDTO>> getAllPathologies(
 //            @PageableDefault(size = 10, sort = "code", direction = Sort.Direction.ASC)
             Pageable pageable
     ) {
@@ -49,19 +45,19 @@ class ResourcesController {
             description = "Recupero di una patologia dato il suo codice"
     )
     @GetMapping("/pathologies/{code}")
-    public ApiResponse<PathologiesDTO> getPathologiesByCode(
+    public ApiResponse<PathologyDTO> getPathologiesByCode(
             @Parameter(description = "Codice identificativo della patologia", example = "C02")
             @Valid
             @PathVariable
             String code
     ){
-        PathologiesDTO dto = pathologiesService.getPathologyById(code);
+        PathologyDTO dto = pathologiesService.getPathologyById(code);
 
         return ApiResponse.success(dto);
     }
 
     @PostMapping("/pathologies")
-    public PathologiesDTO createPathology(@Valid @RequestBody PathologiesDTO dto){
+    public PathologyDTO createPathology(@Valid @RequestBody PathologyDTO dto){
         return pathologiesService.createNewPathology(dto);
     }
 
@@ -73,13 +69,13 @@ class ResourcesController {
     }
 
     @PutMapping("/pathologies")
-    public ApiResponse<PathologiesDTO> editPathology(@RequestBody PathologiesDTO dto){
-        PathologiesDTO newDto = pathologiesService.editPathology(dto);
+    public ApiResponse<PathologyDTO> editPathology(@RequestBody PathologyDTO dto){
+        PathologyDTO newDto = pathologiesService.editPathology(dto);
         return ApiResponse.success(newDto);
     }
 
     @GetMapping("/sim-error")
-    public ApiResponse<PathologiesDTO> getSimError() throws Exception {
+    public ApiResponse<PathologyDTO> getSimError() throws Exception {
         throw new Exception("è scoppiato tutto!");
 //        throw new EntityNotFoundException("Patologia non trovata!");
 //        throw new IllegalArgumentException("Dati non validi");
