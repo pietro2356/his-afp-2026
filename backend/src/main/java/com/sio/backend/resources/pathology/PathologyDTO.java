@@ -8,7 +8,8 @@ import jakarta.validation.constraints.NotBlank;
  * dei dati relativi alle patologie cliniche nel sistema SIO.
  */
 @Schema(description = "DTO per il trasferimento dei dati riguardanti la Patologia")
-public record PathologiesDTO(
+public record PathologyDTO(
+
         @Schema(
                 description = "Codice univoco della patologia",
                 example = "C02",
