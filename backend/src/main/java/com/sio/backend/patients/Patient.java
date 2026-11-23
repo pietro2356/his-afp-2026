@@ -6,9 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,8 +19,9 @@ import java.time.LocalDate;
 @Table(name = "patients")
 public class Patient {
     @ColumnDefault("'M'")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "sex", columnDefinition = "patient_sex not null")
-    private String sex;
+    private PatientSex sex;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")
@@ -62,4 +66,14 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.createdAt == null) {
+            this.createdAt = Instant.now();
+        }
+        if (this.sex == null) {
+            this.sex = PatientSex.M;
+        }
+    }
 }

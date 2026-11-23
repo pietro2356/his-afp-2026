@@ -3,7 +3,6 @@ package com.sio.backend.patients;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -24,10 +23,21 @@ public record PatientDTO(
         String cognome,
 
         @NotNull(message = "La data di nascita è obbligatoria")
-        @PastOrPresent(message = "La data di nascita non può essere nel futuro")
+        @PastOrPresent(message = "La data di nascita non può essere futura")
         LocalDate dataNascita,
 
-        @NotBlank(message = "Il sesso è obbligatorio")
-        @Pattern(regexp = "^[MF]$", message = "Il sesso deve essere M o F")
-        String sesso
+        @NotNull(message = "Il sesso è obbligatorio")
+        PatientSex sex,
+
+        @Size(max = 255)
+        String indirizzoVia,
+
+        @Size(max = 20)
+        String indirizzoCivico,
+
+        @Size(max = 100)
+        String comune,
+
+        @Size(max = 5)
+        String provincia
 ) {}
