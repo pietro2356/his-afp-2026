@@ -1,33 +1,30 @@
 import { inject, Service, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IArrivalMode, IPathology, ITriageColor } from './resources.model';
-import { ApiResponse } from '../generics/ApiResponse.model';
+import { IApiResponse, IPathology, Page, TApiResponsePathology } from './resources.models';
+import { GestioneRisorseSIOService } from '../api';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Service()
 export class Resources {
   readonly #http = inject(HttpClient);
-  readonly #triageColors = signal<ITriageColor[]>([]);
-  readonly #pathologies = signal<IPathology[]>([]);
-  readonly #arrivalModes = signal<IArrivalMode[]>([]);
+  readonly #gestioneRisorse = inject(GestioneRisorseSIOService);
 
-  triageColors = this.#triageColors.asReadonly();
-  pathologies = this.#pathologies.asReadonly();
-  arrivalModes = this.#arrivalModes.asReadonly();
+  readonly #listaPatologie = signal<IPathology[]>([]);
+  readonly listaPatologie = this.#listaPatologie.asReadonly();
 
-  public fetch() {
-    this.fetchPathology();
-  }
-
-  private fetchPathology() {
-    this.#http
-      .get<ApiResponse<IPathology[]>>(`http://localhost:8080/resources/pathologies`)
+  public fetchPatologie(){
+    this.#http.get<TApiResponsePathology>('http://localhost:8080/resources/pathologies')
       .subscribe({
         next: (res) => {
-          this.#pathologies.set(res.data.content);
+          this.#listaPatologie.set(res.data.content);
         },
-        error: (err) => {
-          console.error('Errore durante il fetch delle patologie:', err);
-        },
-      });
+        error: (error) => {
+          console.error(error);
+        }
+      })
+  }
+
+  public fetchPathoFromAPi(){
+    toSignal(this.#gestioneRisorse.getAllPathologies({}));
   }
 }

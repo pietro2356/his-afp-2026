@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Sidebar } from '../../ui/sidebar/sidebar';
 import { Header } from '../../ui/header/header';
+import { Sidebar } from '../../ui/sidebar/sidebar';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet, Sidebar, Header],
+  imports: [Header, Sidebar, RouterOutlet],
   selector: 'sio-main-layout',
   styleUrl: './main-layout.css',
   templateUrl: './main-layout.html',

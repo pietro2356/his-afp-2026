@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * Espone gli endpoint per le operazioni CRUD sulle patologie[cite: 9].
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/resources")
 @Tag(name="Gestione risorse SIO", description = "Endpoint per la gestione delle risorse SIO")
 class ResourcesController {

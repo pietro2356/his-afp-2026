@@ -1,0 +1,5 @@
+@for (patho of resources.listaPatologie(); track patho.code){
+  <p>{{patho.code}} - {{patho.description}}</p>
+} @empty {
+  <p>Lista patologie vuota</p>
+}
