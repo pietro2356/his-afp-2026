@@ -53,11 +53,6 @@ public class PathologyService {
         return mapper.toDTO(e);
     }
 
-    /**
-     * Crea una nuova patologia nel database
-     * @param dto
-     * @return
-     */
     public PathologyDTO createNewPathology(PathologyDTO dto){
         log.info("Creazione nuova entità patology con codice: {}", dto.code());
         log.debug("Entità in crezione con codice: {}, e descrzione {}", dto.code(), dto.description());
