@@ -1,8 +1,8 @@
 package com.sio.backend.patients;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,5 +37,19 @@ class PatientService {
                 .stream()
                 .map(mapper::toDTO)
                 .toList();
+    }
+
+    @Transactional
+    public Patient upsertPatient(PatientDTO pt){
+        return repo.findByCodiceFiscaleIgnoreCase(pt.codiceFiscale().toUpperCase().trim())
+                .map(existPz -> {
+                    existPz.setNome(pt.nome());
+                    existPz.setCognome(pt.cognome());
+                    existPz.setDataNascita(pt.dataNascita());
+                    existPz.setSex(pt.sex());
+
+                    return existPz;
+                })
+                .orElseGet(() -> repo.save(mapper.toEntity(pt)));
     }
 }
