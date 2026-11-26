@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-class PatientService {
+public class PatientService {
     private final PatientRepository repo;
     private final PatientMapper mapper;
 

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-class TriageColorService {
+public class TriageColorService {
     private final TriageColorRepository repo;
     private final TriageColorMapper mapper;
 
@@ -75,6 +75,6 @@ class TriageColorService {
     @Transactional(readOnly = true)
     public TriageColor getEntityByCode(String code){
         return repo.findById(code.toUpperCase().trim())
-                .orElseThrow(() -> new EntityNotFoundException("Impossibile trovare la patologia con il codice: " + code));
+                .orElseThrow(() -> new EntityNotFoundException("Impossibile trovare il codice colore con il codice: " + code));
     }
 }

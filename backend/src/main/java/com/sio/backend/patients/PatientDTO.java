@@ -21,8 +21,7 @@ public record PatientDTO(
     @PastOrPresent(message = "La data di nascita non può essere nel futuro")
     LocalDate dataNascita,
 
-    @NotBlank(message = "Il sesso è obbligatorio")
-    @Pattern(regexp = "^[MF]$", message = "Il sesso può essere solo 'M' oppure 'F'")
+    @NotNull(message = "Il sesso è obbligatorio")
     PatientSex sex,
 
     @Size(max = 255, message = "La via può essere lunga massimo 255 caratteri")

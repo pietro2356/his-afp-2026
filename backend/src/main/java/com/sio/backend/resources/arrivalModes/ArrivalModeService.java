@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-class ArrivalModeService {
+public class ArrivalModeService {
     private final ArrivalModeRepository repo;
     private final ArrivalModeMapper mapper;
 

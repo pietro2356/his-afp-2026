@@ -1,7 +1,9 @@
 package com.sio.backend.patients;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,7 @@ import java.time.LocalDate;
 public class Patient {
     @ColumnDefault("'M'")
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Enumerated(EnumType.STRING)
     @Column(name = "sex", columnDefinition = "patient_sex not null")
     private PatientSex sex;
 
