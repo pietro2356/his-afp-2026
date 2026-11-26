@@ -2,6 +2,7 @@ package com.sio.backend.patients;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -47,6 +48,11 @@ class PatientService {
                     existPz.setCognome(pt.cognome());
                     existPz.setDataNascita(pt.dataNascita());
                     existPz.setSex(pt.sex());
+
+                    existPz.setIndirizzoVia(pt.indirizzoVia());
+                    existPz.setIndirizzoCivico(pt.indirizzoCivico());
+                    existPz.setComune(pt.comune());
+                    existPz.setProvincia(pt.provincia());
 
                     return existPz;
                 })
