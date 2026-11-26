@@ -3,7 +3,7 @@ package com.sio.backend.patients;
 import org.springframework.stereotype.Component;
 
 @Component
-class PatientMapper {
+public class PatientMapper {
     public PatientDTO toDTO(Patient pt){
         return new PatientDTO(
                 pt.getCodiceFiscale(),
