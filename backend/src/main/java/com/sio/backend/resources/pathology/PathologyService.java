@@ -87,4 +87,10 @@ public class PathologyService {
 
         return mapper.toDTO(savedEntity);
     }
+
+    @Transactional(readOnly = true)
+    public Pathology getEntityByCode(String code){
+        return repo.findById(code.toUpperCase().trim())
+                .orElseThrow(() -> new EntityNotFoundException("Impossibile trovare la patologia con il codice: " + code));
+    }
 }

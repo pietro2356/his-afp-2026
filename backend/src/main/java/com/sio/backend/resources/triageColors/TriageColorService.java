@@ -1,5 +1,6 @@
 package com.sio.backend.resources.triageColors;
 
+import com.sio.backend.resources.pathology.Pathology;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
@@ -69,5 +70,11 @@ class TriageColorService {
 
         TriageColor savedEntity = repo.save(e);
         return mapper.toDTO(savedEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public TriageColor getEntityByCode(String code){
+        return repo.findById(code.toUpperCase().trim())
+                .orElseThrow(() -> new EntityNotFoundException("Impossibile trovare la patologia con il codice: " + code));
     }
 }

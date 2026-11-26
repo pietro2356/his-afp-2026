@@ -1,5 +1,6 @@
 package com.sio.backend.resources.arrivalModes;
 
+import com.sio.backend.resources.pathology.Pathology;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -68,5 +69,11 @@ class ArrivalModeService {
 
         ArrivalMode savedEntity = repo.save(e);
         return mapper.toDTO(savedEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public ArrivalMode getEntityByCode(String code){
+        return repo.findById(code.toUpperCase().trim())
+                .orElseThrow(() -> new EntityNotFoundException("Impossibile trovare la Modalità di Arrivo con il codice: " + code));
     }
 }
