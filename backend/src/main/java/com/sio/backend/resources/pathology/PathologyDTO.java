@@ -2,6 +2,7 @@ package com.sio.backend.resources.pathology;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 /**
  * Data Transfer Object (DTO) in formato record per il trasferimento
@@ -17,6 +18,7 @@ public record PathologyDTO(
                 pattern = "C[0-9]{2,}+$"
         )
         @NotBlank(message = "Il codice è obbligatorio")
+        @Pattern(regexp = "^C[0-9]{2,}+$", message = "Il codice patologia deve rispettare la codifica Cxx")
         String code,
 
         @Schema(
