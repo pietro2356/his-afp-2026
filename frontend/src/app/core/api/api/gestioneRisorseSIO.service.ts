@@ -17,15 +17,15 @@ import { Observable }                                        from 'rxjs';
 import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
-import { ApiResponsePagePathologiesDTO } from '../model/apiResponsePagePathologiesDTO';
+import { ApiResponsePagePathologyDTO } from '../model/apiResponsePagePathologyDTO';
 // @ts-ignore
-import { ApiResponsePathologiesDTO } from '../model/apiResponsePathologiesDTO';
+import { ApiResponsePathologyDTO } from '../model/apiResponsePathologyDTO';
 // @ts-ignore
 import { ApiResponseVoid } from '../model/apiResponseVoid';
 // @ts-ignore
 import { Pageable } from '../model/pageable';
 // @ts-ignore
-import { PathologiesDTO } from '../model/pathologiesDTO';
+import { PathologyDTO } from '../model/pathologyDTO';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -45,17 +45,17 @@ export class GestioneRisorseSIOService extends BaseService {
 
     /**
      * @endpoint post /resources/pathologies
-     * @param pathologiesDTO 
+     * @param pathologyDTO 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public createPathology(pathologiesDTO: PathologiesDTO, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<PathologiesDTO>;
-    public createPathology(pathologiesDTO: PathologiesDTO, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PathologiesDTO>>;
-    public createPathology(pathologiesDTO: PathologiesDTO, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<PathologiesDTO>>;
-    public createPathology(pathologiesDTO: PathologiesDTO, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (pathologiesDTO === null || pathologiesDTO === undefined) {
-            throw new Error('Required parameter pathologiesDTO was null or undefined when calling createPathology.');
+    public createPathology(pathologyDTO: PathologyDTO, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<PathologyDTO>;
+    public createPathology(pathologyDTO: PathologyDTO, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PathologyDTO>>;
+    public createPathology(pathologyDTO: PathologyDTO, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<PathologyDTO>>;
+    public createPathology(pathologyDTO: PathologyDTO, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (pathologyDTO === null || pathologyDTO === undefined) {
+            throw new Error('Required parameter pathologyDTO was null or undefined when calling createPathology.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -94,10 +94,10 @@ export class GestioneRisorseSIOService extends BaseService {
 
         let localVarPath = `/resources/pathologies`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<PathologiesDTO>('post', `${basePath}${localVarPath}`,
+        return this.httpClient.request<PathologyDTO>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: pathologiesDTO,
+                body: pathologyDTO,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
@@ -177,17 +177,17 @@ export class GestioneRisorseSIOService extends BaseService {
 
     /**
      * @endpoint put /resources/pathologies
-     * @param pathologiesDTO 
+     * @param pathologyDTO 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public editPathology(pathologiesDTO: PathologiesDTO, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologiesDTO>;
-    public editPathology(pathologiesDTO: PathologiesDTO, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologiesDTO>>;
-    public editPathology(pathologiesDTO: PathologiesDTO, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologiesDTO>>;
-    public editPathology(pathologiesDTO: PathologiesDTO, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (pathologiesDTO === null || pathologiesDTO === undefined) {
-            throw new Error('Required parameter pathologiesDTO was null or undefined when calling editPathology.');
+    public editPathology(pathologyDTO: PathologyDTO, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologyDTO>;
+    public editPathology(pathologyDTO: PathologyDTO, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologyDTO>>;
+    public editPathology(pathologyDTO: PathologyDTO, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologyDTO>>;
+    public editPathology(pathologyDTO: PathologyDTO, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (pathologyDTO === null || pathologyDTO === undefined) {
+            throw new Error('Required parameter pathologyDTO was null or undefined when calling editPathology.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -226,10 +226,10 @@ export class GestioneRisorseSIOService extends BaseService {
 
         let localVarPath = `/resources/pathologies`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ApiResponsePathologiesDTO>('put', `${basePath}${localVarPath}`,
+        return this.httpClient.request<ApiResponsePathologyDTO>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: pathologiesDTO,
+                body: pathologyDTO,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
@@ -249,9 +249,9 @@ export class GestioneRisorseSIOService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getAllPathologies(pageable: Pageable, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePagePathologiesDTO>;
-    public getAllPathologies(pageable: Pageable, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePagePathologiesDTO>>;
-    public getAllPathologies(pageable: Pageable, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePagePathologiesDTO>>;
+    public getAllPathologies(pageable: Pageable, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePagePathologyDTO>;
+    public getAllPathologies(pageable: Pageable, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePagePathologyDTO>>;
+    public getAllPathologies(pageable: Pageable, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePagePathologyDTO>>;
     public getAllPathologies(pageable: Pageable, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (pageable === null || pageable === undefined) {
             throw new Error('Required parameter pageable was null or undefined when calling getAllPathologies.');
@@ -295,7 +295,7 @@ export class GestioneRisorseSIOService extends BaseService {
 
         let localVarPath = `/resources/pathologies`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ApiResponsePagePathologiesDTO>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<ApiResponsePagePathologyDTO>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters.toHttpParams(),
@@ -318,9 +318,9 @@ export class GestioneRisorseSIOService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getPathologiesByCode(code: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologiesDTO>;
-    public getPathologiesByCode(code: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologiesDTO>>;
-    public getPathologiesByCode(code: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologiesDTO>>;
+    public getPathologiesByCode(code: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologyDTO>;
+    public getPathologiesByCode(code: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologyDTO>>;
+    public getPathologiesByCode(code: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologyDTO>>;
     public getPathologiesByCode(code: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (code === null || code === undefined) {
             throw new Error('Required parameter code was null or undefined when calling getPathologiesByCode.');
@@ -353,7 +353,7 @@ export class GestioneRisorseSIOService extends BaseService {
 
         let localVarPath = `/resources/pathologies/${this.configuration.encodeParam({name: "code", value: code, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ApiResponsePathologiesDTO>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<ApiResponsePathologyDTO>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -372,9 +372,9 @@ export class GestioneRisorseSIOService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getSimError(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologiesDTO>;
-    public getSimError(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologiesDTO>>;
-    public getSimError(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologiesDTO>>;
+    public getSimError(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<ApiResponsePathologyDTO>;
+    public getSimError(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiResponsePathologyDTO>>;
+    public getSimError(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiResponsePathologyDTO>>;
     public getSimError(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -404,7 +404,7 @@ export class GestioneRisorseSIOService extends BaseService {
 
         let localVarPath = `/resources/sim-error`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<ApiResponsePathologiesDTO>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<ApiResponsePathologyDTO>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

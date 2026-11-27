@@ -9,13 +9,37 @@
  */
 
 
+/**
+ * Wrapper standard per le risposte API del sistema SIO
+ */
 export interface ApiResponseVoid { 
+    /**
+     * Stato esito della richiesta (SUCCESS, FAIL, ERROR)
+     */
     status?: ApiResponseVoid.StatusEnum;
+    /**
+     * Codice di stato HTTP associato alla risposta
+     */
     statusCode?: number;
+    /**
+     * Timestamp temporale in cui è stata generata la risposta
+     */
     timestamp?: string;
+    /**
+     * Payload dei dati restituiti dall\'operazione
+     */
     data?: any | null;
+    /**
+     * Messaggio descrittivo associato all\'esito o all\'errore
+     */
     message?: string;
+    /**
+     * Codice errore applicativo interno personalizzato
+     */
     errorCode?: string;
+    /**
+     * Traccia dello stack di errore (visibile solo in ambienti di debug/sviluppo)
+     */
     stackTrace?: string;
 }
 export namespace ApiResponseVoid {
