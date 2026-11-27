@@ -1,7 +1,52 @@
-<ul>
-  @for (pt of admService.listaPz(); track pt.id){
-    <li>{{pt.id}} - {{pt.paziente?.nome}} {{pt.paziente?.cognome}} -- {{pt.triageColor?.code}}</li>
-  } @empty {
-    <li>Nessun PZ in Pronto Soccorso</li>
-  }
-</ul>
+<div class="rounded-xl overflow-hidden">
+  <p-table
+    [value]="admService.listaPz()"
+    [loading]="admService.loading()"
+    dataKey="id"
+  >
+    <ng-template #header>
+      <tr>
+        <th class="w-36">Triage</th>
+        <th class="w-36">Braccialetto</th>
+        <th>Paziente</th>
+        <th>Patologia / Arrivo</th>
+        <th class="w-40">Stato</th>
+        <th class="w-44 text-right">Azioni rapide</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body [sioRow]="admService.listaPz()" let-adm>
+      <tr class="hover:bg-surface-50">
+        <td>
+          @if (adm.triageColor; as colore) {
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold text-slate-900"
+              [style.background-color]="colore.hexValue"
+              [pTooltip]="colore.displayName"
+              tooltipPosition="top"
+            >
+              <span>
+                {{colore.priority}}
+              </span>
+              <span>
+                {{colore.code}}
+              </span>
+            </span>
+          } @else {
+            <p-tag severity="secondary" value="N/D"/>
+          }
+        </td>
+        <td>
+          <div class="font-mono font-semibold text-sm">{{adm.braccialetto}}</div>
+          <div class="text-sx text-surface-500">
+            Ingresso: {{adm.dataOraIngresso | date: 'HH:mm'}}
+          </div>
+        </td>
+        <td>
+          <div class="font-semibold text-surface-900">{{adm.paziente.cognome}} {{adm.paziente.nome}}</div>
+          <div class="text-xs text-surface-500 font-mono">{{adm.paziente.codiceFiscale}} - {{adm.paziente.sex}} - {{adm.paziente.dataNascita | date:'dd/MM/yyyy'}}</div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
