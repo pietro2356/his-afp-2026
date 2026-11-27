@@ -1,5 +1,7 @@
-@for (patho of resources.listaPatologie(); track patho.code){
-  <p>{{patho.code}} - {{patho.description}}</p>
-} @empty {
-  <p>Lista patologie vuota</p>
-}
+<ul>
+  @for (pt of admService.listaPz(); track pt.id){
+    <li>{{pt.id}} - {{pt.paziente?.nome}} {{pt.paziente?.cognome}} -- {{pt.triageColor?.code}}</li>
+  } @empty {
+    <li>Nessun PZ in Pronto Soccorso</li>
+  }
+</ul>

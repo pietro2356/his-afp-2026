@@ -14,17 +14,17 @@ import { PatientDTO } from './patientDTO';
 
 
 export interface AdmissionResponseDTO { 
-    id?: number;
-    braccialetto?: string;
-    dataOraIngresso?: string;
-    stato?: AdmissionResponseDTO.StatoEnum;
-    noteTriage?: string;
-    updatedAt?: string;
-    dataOraDimissione?: string;
-    paziente?: PatientDTO;
-    patologia?: PathologyDTO;
-    triageColor?: TriageColorDTO;
-    arrivalMode?: ArrivalModeDTO;
+    id: number;
+    braccialetto: string;
+    dataOraIngresso: string;
+    stato: AdmissionResponseDTO.StatoEnum;
+    noteTriage: string;
+    updatedAt: string;
+    dataOraDimissione: string;
+    paziente: PatientDTO;
+    patologia: PathologyDTO;
+    triageColor: TriageColorDTO;
+    arrivalMode: ArrivalModeDTO;
 }
 export namespace AdmissionResponseDTO {
     export const StatoEnum = {

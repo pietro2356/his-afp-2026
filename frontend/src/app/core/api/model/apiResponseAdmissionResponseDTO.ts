@@ -17,19 +17,19 @@ export interface ApiResponseAdmissionResponseDTO {
     /**
      * Stato esito della richiesta (SUCCESS, FAIL, ERROR)
      */
-    status?: ApiResponseAdmissionResponseDTO.StatusEnum;
+    status: ApiResponseAdmissionResponseDTO.StatusEnum;
     /**
      * Codice di stato HTTP associato alla risposta
      */
-    statusCode?: number;
+    statusCode: number;
     /**
      * Timestamp temporale in cui è stata generata la risposta
      */
-    timestamp?: string;
+    timestamp: string;
     /**
      * Payload dei dati restituiti dall\'operazione
      */
-    data?: AdmissionResponseDTO;
+    data: AdmissionResponseDTO;
     /**
      * Messaggio descrittivo associato all\'esito o all\'errore
      */

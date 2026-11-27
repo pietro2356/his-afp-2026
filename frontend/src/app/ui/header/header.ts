@@ -19,7 +19,7 @@ export class Header {
   readonly patho = signal<string>('');
 
   constructor() {
-    this.res.fetch();
+    this.res.fetchPatologie()
   }
 
 }
