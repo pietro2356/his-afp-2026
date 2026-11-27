@@ -24,13 +24,13 @@ import java.time.Instant;
 @Schema(description = "Wrapper standard per le risposte API del sistema SIO")
 public class ApiResponse<T> {
 
-    @Schema(description = "Stato esito della richiesta (SUCCESS, FAIL, ERROR)", example = "SUCCESS")
+    @Schema(description = "Stato esito della richiesta (SUCCESS, FAIL, ERROR)", example = "SUCCESS", requiredMode = Schema.RequiredMode.REQUIRED)
     private ApiResponseStatus status;
 
-    @Schema(description = "Codice di stato HTTP associato alla risposta", example = "200")
+    @Schema(description = "Codice di stato HTTP associato alla risposta", example = "200", requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer statusCode;
 
-    @Schema(description = "Timestamp temporale in cui è stata generata la risposta")
+    @Schema(description = "Timestamp temporale in cui è stata generata la risposta", requiredMode = Schema.RequiredMode.REQUIRED)
     private Instant timestamp;
 
     @Schema(description = "Payload dei dati restituiti dall'operazione")
